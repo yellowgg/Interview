@@ -47,4 +47,37 @@ public class Solution {
 
         return true;
     }
+
+    /**
+     * https://leetcode.com/problems/search-insert-position/
+     */
+    public int searchInsert(int[] nums, int target) {
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == target) {
+                return i;
+            }
+        }
+        if (target <= nums[0]) {
+            return 0;
+        } else if (target >= nums[nums.length - 1]) {
+            return nums.length;
+        } else {
+            for (int i = 0; i < nums.length; i++) {
+                if (nums[i] <= target && nums[i + 1] >= target) {
+                    return i + 1;
+                }
+            }
+        }
+        return 0;
+    }
+
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+        int[] array = new int[]{1, 3, 5, 6};
+        System.out.println(solution.searchInsert(array, 5));
+        System.out.println(solution.searchInsert(array, 2));
+        System.out.println(solution.searchInsert(array, 7));
+        System.out.println(solution.searchInsert(array, 0));
+
+    }
 }
