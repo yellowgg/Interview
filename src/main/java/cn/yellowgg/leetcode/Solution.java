@@ -89,10 +89,25 @@ public class Solution {
         return count;
     }
 
+    /**
+     * https://leetcode.com/problems/to-lower-case/
+     */
+    public String toLowerCase(String str) {
+        StringBuilder sb = new StringBuilder();
+        for (char c : str.toCharArray()) {
+            if (c >= 'A' && c <= 'Z') {
+                sb.append(Character.toChars(c + 32));
+            } else {
+                sb.append(c);
+            }
+        }
+        return sb.toString();
+    }
+
     public static void main(String[] args) {
         Solution solution = new Solution();
-        System.out.println(solution.numJewelsInStones("aA", "aAAbbbb"));
-        System.out.println(solution.numJewelsInStones("zz", "ZZ"));
-        System.out.println(solution.numJewelsInStones("abC", "abC"));
+        System.out.println(solution.toLowerCase("aAAGsgbbbb"));
+        System.out.println(solution.toLowerCase("ZZfagGASAgasgsafa"));
+        System.out.println(solution.toLowerCase("abCsgasfaGASG"));
     }
 }
