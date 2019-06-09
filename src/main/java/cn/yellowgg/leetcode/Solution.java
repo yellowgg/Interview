@@ -71,13 +71,28 @@ public class Solution {
         return 0;
     }
 
+    /**
+     * https://leetcode.com/problems/jewels-and-stones/
+     */
+    public int numJewelsInStones(String J, String S) {
+        if (S == null || S.isEmpty() || J == null || J.isEmpty()) {
+            return 0;
+        }
+        int count = 0;
+        for (int i = 0; i < J.length(); i++) {
+            for (int j = 0; j < S.length(); j++) {
+                if (S.charAt(j) == J.charAt(i)) {
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+
     public static void main(String[] args) {
         Solution solution = new Solution();
-        int[] array = new int[]{1, 3, 5, 6};
-        System.out.println(solution.searchInsert(array, 5));
-        System.out.println(solution.searchInsert(array, 2));
-        System.out.println(solution.searchInsert(array, 7));
-        System.out.println(solution.searchInsert(array, 0));
-
+        System.out.println(solution.numJewelsInStones("aA", "aAAbbbb"));
+        System.out.println(solution.numJewelsInStones("zz", "ZZ"));
+        System.out.println(solution.numJewelsInStones("abC", "abC"));
     }
 }
