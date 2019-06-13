@@ -195,3 +195,57 @@ B、JAVA使用的是Unicode作为标准字符，这使得JAVA程序在不同的�
 C、JAVA引进来的EXCEPTION处理机制，使得JAVA程序更安全、更稳定、更随机应变  
 D、垃圾回收机制是JAVA的内在特性，垃圾回收机制的调度是有程序员负责的  
 答案选D
+
+31. 往OuterClass类的代码段中插入内部类声明, 哪一个是错误的(复选题)  
+    A 
+    ```
+    class InnerClass{
+    public static float func(){return f;}
+    }
+    ```
+    B
+    ```
+    abstract class InnerClass{
+    public abstract float func(){}
+    }
+    ```
+    C
+    ```
+    static class InnerClass{
+    protected static float func(){return f;}
+    }
+    ```
+    D
+    ```
+    public class InnerClass{
+    static float func(){return f;}
+    ```
+    答案选ABCD  
+    解析：https://www.nowcoder.com/profile/692348410/wrongset/202776754?page=1
+    &offset=0&tags=  
+    静态方法不能访问非静态变量，A和C错；抽象类中的抽象方法不能有方法体，B错；  
+    一个类中有多个类声明时，只能有一个public类，D错
+
+32. 以下描述错误的一项是  
+A、程序计数器是一个比较小的内存区域，用于指示当前线程所执行的字节码执行
+到了第几行，是线程隔离的  
+B、原则上讲，所有的对象都是在堆区上分配内存，是线程之间共享的  
+C、方法区用于存储JVM加载的类信息、常量、静态变量，
+即使编译器编译后的代码等数据，是线程隔离的  
+D、Java方法执行内存模型，用于存储局部变量，操作数栈，动态链接，方法出口等信息，
+是线程隔离的  
+答案选C  
+解析：https://www.nowcoder.com/profile/692348410/wrongset/202776595?page=1&tags
+=&isNoip=false  
+
+33. 导出类调用基类的构造器必须用到的关键字  
+A、this　　　　B、final  
+C、super　　　D、static  
+答案选C
+
+34. 在使用 interface 声明一个外部接口时，只可以使用()修饰符修饰该接口  
+A、private　　B、protected　　C、private protected　　D、public  
+答案选D  
+解析：接口的方法都是 public abstract 变量都是public static final的 
+
+35. 程序文件名必须与公共外部类的名称完全一致(包括大小写)  
