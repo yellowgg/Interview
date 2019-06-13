@@ -249,3 +249,13 @@ A、private　　B、protected　　C、private protected　　D、public
 解析：接口的方法都是 public abstract 变量都是public static final的 
 
 35. 程序文件名必须与公共外部类的名称完全一致(包括大小写)  
+
+## 判断题
+1. abstract和final可以同时作为一个类的修饰符  
+答案：错误  
+解析：abstract修饰一个类，这个类肯定可以被继承，
+但是final类是不能继承的，所以有矛盾，肯定不能同时用 
+
+2. 如果一个文件中声明了一个public类，那么该文件名必须和外部类名保持一致。(包括大小写)  
+答案：正确  
+解析： 公共外部类必须与源文件名一致，且一个源文件只能有一个公共外部类。
