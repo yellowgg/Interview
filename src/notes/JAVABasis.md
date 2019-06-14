@@ -248,8 +248,49 @@ A、private　　B、protected　　C、private protected　　D、public
 答案选D  
 解析：接口的方法都是 public abstract 变量都是public static final的 
 
-35. 程序文件名必须与公共外部类的名称完全一致(包括大小写)  
+35. 下面程序段执行后b的值是    
+    ```
+    Integer integer =new Integer(9);
+    boolean b = integer  instanceof  Object;
+    ```
+    A、9　　　　　B、true　　　　　C、false　　　　　D、1  
+    答案选B  
+    解析：　instanceof通过返回一个布尔值来指出，
+    这个对象是否是这个特定类或者是它的子类的一个实例。
 
+36. javac的作用是  
+A、将源程序编译成字节码　B、将字节码编译成源程序　C、解释执行Java字节码　D、调试Java代码  
+答案选A  
+解析：javac将源程序编译成.class文件，字节码；java将字节码转为机器码，.exe程序
+
+37. 以下代码的输出结果是
+    ```
+    public class B
+    {
+        public static B t1 = new B();
+        public static B t2 = new B();
+        {
+            System.out.println("构造块");
+        }
+        static
+        {
+            System.out.println("静态块");
+        }
+        public static void main(String[] args)
+        {
+            B t = new B();
+        }
+    }
+    ```
+    A、静态块 构造块 构造块 构造块  
+    B、构造块 静态块 构造块 构造块  
+    C、构造块 构造块 静态块 构造块  
+    D、构造块 构造块 构造块 静态块  
+    答案选C  
+    解析：https://www.nowcoder.com/test/question/done?tid=24447047&qid=14700
+    #referAnchor  
+    
+    
 ## 判断题
 1. abstract和final可以同时作为一个类的修饰符  
 答案：错误  
