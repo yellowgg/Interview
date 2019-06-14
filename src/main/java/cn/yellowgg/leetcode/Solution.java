@@ -1,5 +1,7 @@
 package cn.yellowgg.leetcode;
 
+import java.util.Arrays;
+
 /**
  * @Author:黄广
  * @Description: 刷会lettcode的题
@@ -117,9 +119,30 @@ public class Solution {
         }
     }
 
+    /**
+     * https://leetcode.com/problems/sort-array-by-parity/
+     */
+    public int[] sortArrayByParity(int[] A) {
+        int[] result = new int[A.length];
+
+        int head = 0;
+        int tail = A.length - 1;
+
+        for (int i = 0; i < A.length; i++) {
+            if ((A[i] & 1) == 0) {
+                result[head++] = A[i];
+            } else {
+                result[tail--] = A[i];
+            }
+        }
+
+        return result;
+    }
+
     public static void main(String[] args) {
         Solution solution = new Solution();
-        char[] s = new char[]{'h', 'e', 'l', 'g', 'o', 's'};
-        solution.reverseString(s);
+        int[] A = new int[]{3, 1, 2, 4};
+        int[] array = solution.sortArrayByParity(A);
+        System.out.println(Arrays.toString(array));
     }
 }
