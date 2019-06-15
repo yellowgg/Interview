@@ -1,7 +1,5 @@
 package cn.yellowgg.leetcode;
 
-import java.util.Arrays;
-
 /**
  * @Author:黄广
  * @Description: 刷会lettcode的题
@@ -106,7 +104,6 @@ public class Solution {
         return sb.toString();
     }
 
-
     /**
      * https://leetcode.com/problems/reverse-string/
      */
@@ -139,10 +136,34 @@ public class Solution {
         return result;
     }
 
+    /**
+     * https://leetcode.com/problems/flipping-an-image/
+     */
+    public int[][] flipAndInvertImage(int[][] A) {
+        int temp, length;
+        for (int i = 0; i < A.length; i++) {
+            length = A[i].length;
+            if ((length & 1) == 1) {
+                A[i][length / 2] = A[i][length / 2] ^ 1;
+            }
+            for (int j = 0; j < A[i].length / 2; j++) {
+                temp = A[i][j] ^ 1;
+                A[i][j] = A[i][length - j - 1] ^ 1;
+                A[i][length - j - 1] = temp;
+            }
+        }
+        return A;
+    }
+
     public static void main(String[] args) {
         Solution solution = new Solution();
-        int[] A = new int[]{3, 1, 2, 4};
-        int[] array = solution.sortArrayByParity(A);
-        System.out.println(Arrays.toString(array));
+        int[][] A = new int[][]{{1, 1, 0}, {1, 0, 1}, {0, 0, 0}};
+        int[][] ints = solution.flipAndInvertImage(A);
+        for (int i = 0; i < ints.length; i++) {
+            for (int j = 0; j < ints[i].length; j++) {
+                System.out.print(ints[i][j]);
+            }
+            System.out.println();
+        }
     }
 }
