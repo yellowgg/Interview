@@ -358,6 +358,49 @@ D、接口方法的访问权限默认都是public
     答案选C  
     解析：https://www.nowcoder.com/test/question/done?tid=24462695&qid=15318#summary
     
+46. 在JAVA中， 下列标识符合法的是  
+A、3kyou　　　　B、@163  
+C、name　　　　D、while  
+答案选C  
+
+47. 关于下面程序 ThisTest .java 运行结果 说法正确的是
+    ```
+    public class ThisTest {
+        public static void main(String args[]) {
+            String x="7";       
+            int y = 2;
+            int z=2;              
+            System.out.println(x+y+z);
+        }  
+    }
+    ```
+    A、11　　　　B、722  
+    C、22　　　　D、程序有编译错误  
+    答案选B  
+    解析：如果有操作数是字符串类型，java会自动将另外一个操作数也转换成字符串
+    
+48. 下列代码中的错误是  
+    ```
+    public class Test{
+        public static void main(String [] args){
+            int i;
+            i += 1;
+        }
+    }
+    ```
+    A、非法的表达式 i+=1  
+    B、找不到符号i  
+    C、类不应为public  
+    D、尚未初始化变量i  
+    答案选D  
+    解析：无论是类变量还是实例变量，在使用前都是非空的，而局部变量没有初始化过程，在使用前必须赋值。
+    
+49. Math.round(11.5) 等于多少 (). Math.round(-11.5) 等于多少()  
+A、11 ,-11　　　　B、11 ,-12  
+C、12 ,-11　　　　D、12 ,-12  
+答案选C  
+解析：round函数是取最接近整数，如果遇到一样近，则取最大值
+
 
 ## 判断题
 1. abstract和final可以同时作为一个类的修饰符  
@@ -388,6 +431,14 @@ D、接口方法的访问权限默认都是public
 6. 接口不能扩展（继承）多个接口  
 答案：错误  
 解析：类是单继承，但接口可以多继承  
+
+7. 不考虑反射机制，一个子类显式调用父类的构造器必须用super关键字  
+答案：正确  
+
+8. 类方法中可以直接调用对象变量  
+答案：错误  
+解析：静态方法中不能直接调用对象的变量，但可以通过创建对象来调用，
+因为静态方法在类加载时就初始化，对象变量需要在新建对象后才能使用
 
 
 ## 填空题  
