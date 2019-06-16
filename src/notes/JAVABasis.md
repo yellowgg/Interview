@@ -294,8 +294,71 @@ A、表对应类　　　　　　　B、记录对应对象
 C、表的字段对应类的属性　D、表之间的参考关系对应类之间的依赖关系  
 答案选D
 
+39. 要使对象具有序列化能力，则其类应该实现如下哪个接口  
+A、java.io.Serializable  
+B、java.lang.Cloneable  
+C、java.lang.CharSequence  
+D、java.lang.Comparable  
+答案选A
 
+40. 编译 java 源程序文件将产生响应的字节码文件，这些字节码文件的扩展名为  
+A、.class　　　B、.java  
+C、.html　　　D、.exe  
+答案选A
+
+41. Java 语言中创建一个对象使用的关键字是  
+A、class　　　B、interface  
+C、new　 　　D、create  
+答案选C
+
+42. 在结构化的程序设计中，模块划分的原则是  
+A、各模块应包括尽量多的功能  
+B、各模块的规划应尽量大  
+C、各模块之间的联系尽量紧密  
+D、模块内具有高内聚度，模块间具有低耦合度  
+答案选D  
+解析：
+高内聚就是类的内部操作细节自己完成，不允许外部干涉 低耦合是仅暴露少量的方法给外部使用
+
+43. 关于抽象类和接口叙述正确的是  
+A、抽象类和接口都能实例化的  
+B、抽象类不能实现接口  
+C、抽象类方法的访问权限默认都是public  
+D、接口方法的访问权限默认都是public  
+答案选D  
+解析：https://www.nowcoder.com/test/question/done?tid=24462695&qid=69574#summary
+
+44. 下面的程序在编译运行后，在屏幕上显示的结果是  
+    ```
+    public class test {
+        public static void main(String args[]) {
+            int x,y;
+            x=5>>2;
+            y=x>>>2;
+            System.out.println(y);
+        }
+    }
+    ```
+    A、0　　　B、2  
+    C、5　　　D、80  
+    答案选A  
+    解析：5 >> 2为右移2位，为0001，然后>>>是无符号右移，所以将0001右移2位再高位补0,所以为0000。
     
+45. 在jdk1.5的环境下，有如下4条语句，输出结果是
+    ```
+    Integer i01 = 59;
+    int i02 = 59;
+    Integer i03 =Integer.valueOf(59);
+    Integer i04 = new Integer(59);
+    ```
+    A、System.out.println(i01 == i02);  
+    B、System.out.println(i01 == i03);  
+    C、System.out.println(i03 == i04);  
+    D、System.out.println(i02 == i04);  
+    答案选C  
+    解析：https://www.nowcoder.com/test/question/done?tid=24462695&qid=15318#summary
+    
+
 ## 判断题
 1. abstract和final可以同时作为一个类的修饰符  
 答案：错误  
