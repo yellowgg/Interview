@@ -8,6 +8,19 @@ package cn.yellowgg.leetcode;
 public class Solution {
 
     /**
+     * 树节点
+     */
+    private class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+
+        TreeNode(int x) {
+            val = x;
+        }
+    }
+
+    /**
      * https://leetcode.com/problems/two-sum/
      */
     public int[] twoSum(int[] nums, int target) {
@@ -155,15 +168,39 @@ public class Solution {
         return A;
     }
 
+
+    /**
+     * https://leetcode.com/problems/univalued-binary-tree/
+     */
+    int flag = 0;
+
+    public boolean isUnivalTree(TreeNode root) {
+        int val = root.val;
+
+        pre(root, val);
+        if (flag == 1) {
+            return false;
+        } else {
+            return true;
+        }
+
+    }
+
+    public void pre(TreeNode root, int fatherVal) {
+        if (root == null)
+            return;
+
+        else if (root.val != fatherVal) {
+            flag = 1;
+            return;
+        } else {
+            pre(root.left, fatherVal);
+            pre(root.right, fatherVal);
+        }
+    }
+
+
     public static void main(String[] args) {
         Solution solution = new Solution();
-        int[][] A = new int[][]{{1, 1, 0}, {1, 0, 1}, {0, 0, 0}};
-        int[][] ints = solution.flipAndInvertImage(A);
-        for (int i = 0; i < ints.length; i++) {
-            for (int j = 0; j < ints[i].length; j++) {
-                System.out.print(ints[i][j]);
-            }
-            System.out.println();
-        }
     }
 }
