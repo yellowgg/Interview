@@ -221,8 +221,8 @@ D、垃圾回收机制是JAVA的内在特性，垃圾回收机制的调度是有
     static float func(){return f;}
     ```
     答案选ABCD  
-    解析：https://www.nowcoder.com/profile/692348410/wrongset/202776754?page=1
-    &offset=0&tags=  
+    解析：https://www.nowcoder.com/questionTerminal/48524c47dd924887be6684b17175fa40
+    
     静态方法不能访问非静态变量，A和C错；抽象类中的抽象方法不能有方法体，B错；  
     一个类中有多个类声明时，只能有一个public类，D错
 
@@ -235,8 +235,7 @@ C、方法区用于存储JVM加载的类信息、常量、静态变量，
 D、Java方法执行内存模型，用于存储局部变量，操作数栈，动态链接，方法出口等信息，
 是线程隔离的  
 答案选C  
-解析：https://www.nowcoder.com/profile/692348410/wrongset/202776595?page=1&tags
-=&isNoip=false  
+解析：https://www.nowcoder.com/questionTerminal/e591636209aa483fbb2d9d1a3fc9fa98 
 
 33. 导出类调用基类的构造器必须用到的关键字  
 A、this　　　　B、final  
@@ -287,7 +286,7 @@ A、将源程序编译成字节码　B、将字节码编译成源程序　C、�
     C、构造块 构造块 静态块 构造块  
     D、构造块 构造块 构造块 静态块  
     答案选C  
-    解析：https://www.nowcoder.com/test/question/done?tid=24447047&qid=14700#referAnchor
+    解析：https://www.nowcoder.com/questionTerminal/ab6eb06face84c4e81ab5bc6f0f7f258
     
 38. 一般情况下，以下哪个选项不是关系数据模型与对象模型之间匹配关系  
 A、表对应类　　　　　　　B、记录对应对象  
@@ -326,7 +325,7 @@ B、抽象类不能实现接口
 C、抽象类方法的访问权限默认都是public  
 D、接口方法的访问权限默认都是public  
 答案选D  
-解析：https://www.nowcoder.com/test/question/done?tid=24462695&qid=69574#summary
+解析：https://www.nowcoder.com/questionTerminal/9eec69a20cd0467c9204dd6e86213ee1
 
 44. 下面的程序在编译运行后，在屏幕上显示的结果是  
     ```
@@ -356,7 +355,7 @@ D、接口方法的访问权限默认都是public
     C、System.out.println(i03 == i04);  
     D、System.out.println(i02 == i04);  
     答案选C  
-    解析：https://www.nowcoder.com/test/question/done?tid=24462695&qid=15318#summary
+    解析：https://www.nowcoder.com/questionTerminal/bc5da9d0b8444006a776b7cbfba5d250
     
 46. 在JAVA中， 下列标识符合法的是  
 A、3kyou　　　　B、@163  
@@ -401,6 +400,132 @@ C、12 ,-11　　　　D、12 ,-12
 答案选C  
 解析：round函数是取最接近整数，如果遇到一样近，则取最大值
 
+50. 对接口的描述正确的是  
+A、一个类可以实现多个接口   
+B、接口可以有非静态的成员变量  
+C、在jdk8之前，接口可以实现方法  
+D、实现接口的任何类，都需要实现接口的方法  
+答案选A  
+解析：https://www.nowcoder.com/questionTerminal/5161fdd4dd4f4ad699f37e3b0b7d0ba1
+
+51. 有这么一段程序
+    ```
+    public class Test{ 
+        public String name="abc"; 
+        public static void main(String[] args){ 
+            Test test=new Test(); 
+            Test testB=new Test(); 
+            System.out.println(test.equals(testB)+","+test.name.equals(testB.name)); 
+        } 
+    }
+    ```
+    请问以上程序执行的结果是  
+    A、true,true　　　 　B、true,false  
+    C、false,true　　　　D、false,false  
+    答案选C  
+    解析：euqals和==都比较的是对象的地址。只有String的equals重写了，比较内容
+
+52. java 接口的修饰符可以为  
+A、private　　 B、protected  
+C、final　　　 D、abstract  
+答案选D  
+解析：接口只能用public 和 abstract 修饰
+
+53. Java 语言中，负责并发管理的机制是  
+A、垃圾回收　　 　B、虚拟机  
+C、代码安全　　　 D、多线程  
+答案选D
+
+54. HashSet子类依靠()方法区分重复元素  
+A、toString(),equals()   
+B、clone(),equals()  
+C、hashCode(),equals()  
+D、getClass(),clone()  
+答案选C  
+解析：如果子类的hashCode()值相等,equals()也相等，就确定为相等，即重复元素
+
+55. 运行下面代码，输出的结果是
+    ```
+    class A {
+        public A() {
+            System.out.println("class A");
+        }
+        { System.out.println("I'm A class"); }
+        static { System.out.println("class A static"); }
+    }
+    public class B extends A {
+        public B() {
+            System.out.println("class B");
+        }
+        { System.out.println("I'm B class"); }
+        static { System.out.println("class B static"); }
+         
+        public static void main(String[] args) {
+     new B();
+     }
+    }
+    ```
+    A、
+    ```
+    class A static 
+    class B static 
+    I'm A class 
+    class A
+    I'm B class 
+    class B
+    ```   
+     B、
+    ```
+    class A static
+    I'm A class
+    class A
+    class B static
+    I'm B class
+    class B
+    ```  
+     C、
+    ```
+    class A static
+    class B static
+    class A
+    I'm A class 
+    class B
+    I'm B class
+    ```  
+     D、
+    ```
+    class A static
+    class A
+    I'm A class
+    class B static
+    class B
+    I'm B class
+    ```
+    答案选A  
+    解析：执行顺序优先级：静态块>main()>构造块>构造方法
+    
+56. 事务隔离级别是由谁实现的  
+A、Java应用程序  
+B、Hibernate  
+C、数据库系统  
+D、JDBC驱动程序  
+答案选C  
+解析：https://www.nowcoder.com/questionTerminal/ce23bb5a36b54849a05f11187eacb23c
+
+57. 以下选项中，合法的赋值语句是  
+A、a>1;  
+B、i++;  
+C、a= a+1=5;  
+D、y = int ( i );  
+答案选B
+
+58. 关于继承的说法正确的是  
+A、子类将继承父类所有的数据域和方法。  
+B、子类将继承父类的其可见的数据域和方法。  
+C、子类只继承父类public方法和数据域。  
+D、子类只继承父类的方法，而不继承数据域。  
+答案选A  
+解析：继承是可以继承，但能不能用是另外一回事了。
 
 ## 判断题
 1. abstract和final可以同时作为一个类的修饰符  
