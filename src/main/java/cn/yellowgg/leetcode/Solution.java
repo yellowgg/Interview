@@ -1,5 +1,8 @@
 package cn.yellowgg.leetcode;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 /**
  * @Author:黄广
  * @Description: 刷会lettcode的题
@@ -212,7 +215,25 @@ public class Solution {
         return fib[N];
     }
 
+    /**
+     * https://leetcode.com/problems/occurrences-after-bigram/
+     */
+    public String[] findOcurrences(String text, String first, String second) {
+        String[] words = text.split(" ");
+        ArrayList<String> result = new ArrayList<String>();
+
+        for (int i = 0; i < words.length - 2; i++) {
+            if (words[i].equals(first) && words[i + 1].equals(second)) {
+                result.add(words[i + 2]);
+                i += 1;
+            }
+        }
+        return result.toArray(new String[result.size()]);
+    }
+
     public static void main(String[] args) {
         Solution solution = new Solution();
+        String[] ocurrences = solution.findOcurrences("we will we will rock you", "we", "will");
+        System.out.println(Arrays.toString(ocurrences));
     }
 }
