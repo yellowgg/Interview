@@ -231,9 +231,23 @@ public class Solution {
         return result.toArray(new String[result.size()]);
     }
 
+    /**
+     * https://leetcode.com/problems/transpose-matrix/
+     */
+    public int[][] transpose(int[][] A) {
+        int[][] B = new int[A[0].length][A.length];
+        for (int i = 0; i < A.length; i++) {
+            for (int j = 0; j < A[0].length; j++) {
+                B[j][i] = A[i][j];
+            }
+        }
+        return B;
+    }
+
     public static void main(String[] args) {
         Solution solution = new Solution();
-        String[] ocurrences = solution.findOcurrences("we will we will rock you", "we", "will");
-        System.out.println(Arrays.toString(ocurrences));
+        int intArray[][] = {{1, 2, 3}, {4, 5, 6}};
+        int[][] transpose = solution.transpose(intArray);
+        System.out.println(Arrays.toString(args));
     }
 }
