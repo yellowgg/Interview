@@ -1,7 +1,6 @@
 package cn.yellowgg.leetcode;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * @Author:黄广
@@ -244,10 +243,36 @@ public class Solution {
         return B;
     }
 
+    /**
+     * https://leetcode.com/problems/robot-return-to-origin/
+     */
+    public boolean judgeCircle(String moves) {
+        int shu = 0;
+        int heng = 0;
+        for (char c : moves.toCharArray()) {
+            switch (c) {
+                case 'R':
+                    heng = heng + 1;
+                    break;
+                case 'L':
+                    heng = heng - 1;
+                    break;
+                case 'U':
+                    shu = shu + 1;
+                    break;
+                case 'D':
+                    shu = shu - 1;
+                    break;
+                default:
+                    break;
+            }
+        }
+        return heng == 0 && shu == 0 ? true : false;
+    }
+
     public static void main(String[] args) {
         Solution solution = new Solution();
-        int intArray[][] = {{1, 2, 3}, {4, 5, 6}};
-        int[][] transpose = solution.transpose(intArray);
-        System.out.println(Arrays.toString(args));
+        boolean ldrrlruulr = solution.judgeCircle("LDRRLRUULR");
+        System.out.println(ldrrlruulr);
     }
 }
