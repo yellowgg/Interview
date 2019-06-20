@@ -85,3 +85,102 @@ D、获取JNDI数据源
 答案选ABCD  
 解析：
 https://www.nowcoder.com/questionTerminal/36c33ffaf862481491e825465b05952a  
+
+10. 关于AOP错误的是  
+A、AOP将散落在系统中的“方面”代码集中实现  
+B、AOP有助于提高系统可维护性  
+C、AOP已经表现出将要替代面向对象的趋势  
+D、AOP是一种设计模式，Spring提供了一种实现  
+答案选C  
+解析：  
+https://www.nowcoder.com/questionTerminal/653b88622c9f45f28a7fad711e8cdb6a
+
+11. 下面有关spring的依赖注入，说法错误的是  
+A、依赖注入通常有如下两种：设置注入和构造注入  
+B、构造注入可以在构造器中决定依赖关系的注入顺序，优先依赖的优先注入  
+C、当设值注入与构造注入同时存在时，先执行设值注入，再执行构造注入  
+D、设值注入是指IoC容器使用属性的setter方法来注入被依赖的实例。这种注入方式比较简单、直观  
+答案选C  
+解析：
+https://www.nowcoder.com/questionTerminal/a1644e2668f94ab78bfefa38808fb006
+
+12. 下面哪一项对Servlet描述错误  
+A、Servlet是一个特殊的Java类，它必须直接或间接实现Servlet接口  
+B、Servlet接口定义了Servelt的生命周期方法  
+C、当多个客户请求一个Servlet时，服务器为每一个客户启动一个进程  
+D、Servlet客户线程调用service方法响应客户的请求  
+答案选C  
+解析：
+https://www.nowcoder.com/questionTerminal/1cf64be2bacd4d09930c43faa12a3337
+
+13. 下面关于Spring的说法中错误的是  
+A、Spring是一系列轻量级Java EE框架的集合  
+B、Spring中包含一个“依赖注入”模式的实现  
+C、使用Spring可以实现声明式事务  
+D、Spring提供了AOP方式的日志系统  
+答案选D  
+解析：
+https://www.nowcoder.com/questionTerminal/9da4f69abb464d3fb7ea1083064c6774
+
+14. spring的PROPAGATION_REQUIRES_NEW事务，下面哪些说法是正确的  
+A、内部事务回滚会导致外部事务回滚  
+B、内部事务回滚了，外部事务仍然可以提交  
+C、外部事务回滚了，内部事务也跟着回滚  
+D、外部事务回滚了，内部事务仍然可以提交  
+答案选B  
+解析：
+https://www.nowcoder.com/questionTerminal/d3bf03d17e144988a1a0ba7ab67ea5fb
+
+15. 下面关于spring mvc 和struts2的描述，错误的是  
+A、spring mvc的入口是filter，而struts2是servlet  
+B、spring mvc是基于方法的设计，而struts2是基于类的设计  
+C、struts2有以自己的interceptor机制，spring mvc用的是独立的AOP方式  
+D、spring mvc的方法之间基本上独立的，独享request response数据，struts2所有Action变量是共享的  
+答案选A  
+解析：
+https://www.nowcoder.com/questionTerminal/cf803beb7e3346caa636e4eaa3a8c2e9
+
+16. 下列关于Spring特性中IoC描述错误的是  
+A、IoC就是指程序之间的关系由程序代码直接操控  
+B、所谓“控制反转”是指控制权由应用代码转到外部容器，即控制权的转移  
+C、IoC将控制创建的职责搬进了框架中，从应用代码脱离开来  
+D、使用Spring的IoC容器时只需指出组件需要的对象，在运行时Spring的IoC容器会根据XML配置数据提供给它  
+答案选A  
+解析：
+https://www.nowcoder.com/questionTerminal/d02f8b4995de4314b29756898d62377b
+
+17. 下面有关spring DAO，描述错误的是  
+A、Spring提供的DAO(数据访问对象)支持主要的目的是便于以标准的方式使用不同的数据访问技术。  
+B、方便的事务管理: Spring的声明式事务管理力度是类级别  
+C、异常包装:Spring能够包装Hibernate异常，把它们从CheckedException变为RuntimeException; 开发者可选择在恰当的层处理数据中不可恢复的异常，从而避免烦琐的 catch/throw 及异常声明  
+D、Spring提供的DAO支持了JDBC、JDO和Hibernate  
+答案选B  
+解析：
+https://www.nowcoder.com/questionTerminal/982a92bd679048a0bddc5a1f542fbe25
+
+18. 对下面Spring声明式事务的配置含义的说明错误的是  
+    ```
+    <bean id="txProxyTemplate" abstract="true"
+    class=
+    "org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="transactionManager" ref="myTransactionManager" />
+    <property name="transactionAttributes">      
+     <props>
+            <prop key="get*">PROPAGATION_REQUIRED,readOnly</prop>
+             <prop key="*">PROPAGATION_REQUIRED</prop>
+         </props>
+    </property> 
+    </bean>
+    ```
+    A、定义了声明式事务的配置模板  
+    B、对get方法采用只读事务  
+    C、缺少sessionFactory属性的注入  
+    D、配置需要事务管理的bean的代理时，通过parent引用这个配置模板，代码如下  
+    ```
+    <bean id="petBiz" parent="txProxyTemplate">
+             <property name="target" ref="petTarget"/>
+    </bean>
+    ```
+    答案选C  
+    解析： 
+    https://www.nowcoder.com/questionTerminal/0ae7fe7ffb2345fba9c967eb18af0d5c
