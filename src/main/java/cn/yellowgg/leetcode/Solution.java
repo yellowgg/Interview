@@ -270,9 +270,31 @@ public class Solution {
         return heng == 0 && shu == 0 ? true : false;
     }
 
+    /**
+     * https://leetcode.com/problems/reverse-words-in-a-string-iii/
+     */
+    public String reverseWords(String s) {
+        String[] words = s.split(" ");
+        StringBuilder sb = new StringBuilder();
+        for (String word : words) {
+            sb.append(revers(word.toCharArray())).append(" ");
+        }
+        return sb.toString().trim();
+    }
+
+    private char[] revers(char[] s) {
+        char temp;
+        for (int i = 0; i < (s.length / 2); i++) {
+            temp = s[i];
+            s[i] = s[s.length - 1 - i];
+            s[s.length - 1 - i] = temp;
+        }
+        return s;
+    }
+
     public static void main(String[] args) {
         Solution solution = new Solution();
-        boolean ldrrlruulr = solution.judgeCircle("LDRRLRUULR");
-        System.out.println(ldrrlruulr);
+        String s = solution.reverseWords("Let's take LeetCode contest");
+        System.out.println(s);
     }
 }
