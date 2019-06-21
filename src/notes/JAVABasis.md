@@ -627,7 +627,66 @@ D、private void f1() {}
    C：static final 可以表达在一起来修饰方法，表示是该方法是静态的不可重写的方法  
    D：private 修饰方法（这太常见的）表示私有方法，本类可以访问，外界不能访问
    
+63. 与InputStream流相对应的Java系统的“标准输入对象”是  
+A、System.in 　　　 　B、System.out  
+C、System.err　　　　D、System.exit()  
+答案选A  
+解析：A.标准输入 B.标准输出 C.错误输出 D.结束程序  
 
+64. 有以下一段代码，请选择其运行结果  
+    ```
+    public class Spike
+    {
+        public static void main(String[] args)
+        {
+            Counter a = new Counter();
+            System.out.println(a.increment());
+            System.out.println(a.anotherIncrement());
+            Counter b = new Counter();
+            System.out.println(b.increment());
+        }
+    }
+    class Counter
+    {
+        private static int count = 0;
+        public int increment()
+        {
+            return count++;
+        }
+        public int anotherIncrement()
+        {
+            return ++count;
+        }
+    }
+    ```
+    A、1 1 1 　　　 　B、1 2 3  
+    C、0 2 2 　 　　　D、0 2 0  
+    答案选C
+
+65. transient变量和下面哪一项有关  
+A、Serializable 　　　 B、Cloneable  
+C、Runnable 　 　　 　D、Throwable  
+答案选A  
+解析：序列化相关
+
+66. 在JAVA中，假设A有构造方法A(int a)，
+则在类A的其他构造方法中调用该构造方法和语句格式应该为  
+A、this.A(x) 　　　 B、this(x)  
+C、super(x) 　 　　D、A(x)  
+答案选B  
+解析：  
+A.这是调用普通方法的写法  
+C.这时显示调用父类构造方法  
+D.调用静态方法  
+
+66. jdk1.8中，下面有关java 抽象类和接口的区别，说法错误的是(复选题)  
+A、抽象类可以有构造方法，接口中不能有构造方法  
+B、抽象类中可以包含非抽象的普通方法，接口中的方法必须是抽象的，不能有非抽象的普通方法  
+C、一个类可以实现多个接口，但只能继承一个抽象类  
+D、接口中可以有普通成员变量，抽象类中没有普通成员变量  
+答案选BD  
+解析：
+https://www.nowcoder.com/questionTerminal/a8f22c58957d4ade8b73468a7c153ce6
 
 
 ## 判断题
@@ -672,6 +731,11 @@ D、private void f1() {}
 答案：错误  
 解析：语言跨平台是编译后的文件跨平台，而不是源程序跨平台。Java源代码首先经过编译器生成字节码，
 即class文件，该class文件与平台无关，而class文件经过解释执行之后翻译成最终的机器码，这是平台相关的。
+
+10. 内部类（也叫成员内部类）可以有4种访问权限  
+答案：正确  
+解析：
+https://www.nowcoder.com/questionTerminal/fdaecbf8358e41db9d087be7a2babce1
 ## 填空题  
 1. 如果定义一种表达式结构：(+ 6 3)的值为9，(- 6 3)的值为3，(* 6 3)的值为18，(/ 6 3)的值为2；那么对于表达式(* (- 
 16 (* 3 2 2 )) (+ 5 (/ 6 (- 5 3))))输出的结果为____。  

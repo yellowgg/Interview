@@ -20,6 +20,27 @@ B.可以有多个进程对其读；也可以有多个进程写，只不过不能
 C.匿名管道只能单向；命名管道可以双向；所以C过于绝对  
 D.管道是内存中的，所以D不对  
 
+3. 以下程序的运行结果是
+    ```
+    public class TestThread{
+        public static void main(String args[]){
+            Runnable runner = new Runnable(){
+                @Override
+                public void run(){
+                    System.out.print("foo");
+                }
+            };
+            Thread t = new Thread(runner);
+            t.run();
+            System.out.print("bar");
+        }
+    }
+    ```
+    A、foobar 　　　 　　　　　　　　　　　B、barfoo  
+    C、foobar或者barfoo都有可能 　   　　 　D、程序无法正常运行  
+    答案选A  
+    解析：run只是正常方法执行，只有start才是线程开始
+    
 ## 编程题
 - 设计4个线程，其中两个线程每次对j增加1，另外两个线程每次对j减少1。
 ```
