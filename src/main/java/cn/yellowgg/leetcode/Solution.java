@@ -292,6 +292,28 @@ public class Solution {
         return s;
     }
 
+    /**
+     * https://leetcode.com/problems/reverse-only-letters/
+     */
+    public String reverseOnlyLetters(String S) {
+        char[] chars = S.toCharArray();
+        char s;
+        int i = 0;
+        int j = chars.length-1;
+        while(i < j) {
+            if(!(Character.isLowerCase(chars[i]) || Character.isUpperCase(chars[i]))){
+                i++;
+            } else if (!(Character.isLowerCase(chars[j]) || Character.isUpperCase(chars[j]))){
+                j--;
+            } else {
+                s = chars[i];
+                chars[i++] = chars[j];
+                chars[j--] = s;
+            }
+        }
+        return new String(chars);
+    }
+
     public static void main(String[] args) {
         Solution solution = new Solution();
         String s = solution.reverseWords("Let's take LeetCode contest");
