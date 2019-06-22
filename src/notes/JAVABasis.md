@@ -679,7 +679,7 @@ A.这是调用普通方法的写法
 C.这时显示调用父类构造方法  
 D.调用静态方法  
 
-66. jdk1.8中，下面有关java 抽象类和接口的区别，说法错误的是(复选题)  
+67. jdk1.8中，下面有关java 抽象类和接口的区别，说法错误的是(复选题)  
 A、抽象类可以有构造方法，接口中不能有构造方法  
 B、抽象类中可以包含非抽象的普通方法，接口中的方法必须是抽象的，不能有非抽象的普通方法  
 C、一个类可以实现多个接口，但只能继承一个抽象类  
@@ -687,6 +687,77 @@ D、接口中可以有普通成员变量，抽象类中没有普通成员变量
 答案选BD  
 解析：
 https://www.nowcoder.com/questionTerminal/a8f22c58957d4ade8b73468a7c153ce6
+
+68. 下面的程序输出的结果是  
+    ```
+    public class A implements B {
+            public static void main(String args[]) {
+                int i;
+                A a1 = new A();
+                i = a1.k;
+                System.out.println("i=" + i);
+            }
+        }
+    
+        interface B {
+            int k = 10；
+    
+        }
+    ```
+    A、i=0 　　　　　 B、i=10  
+    C、i=true 　 　　 D、程序有编译错误  
+    答案选B  
+    解析：在接口里面的变量默认都是public static final 的，它们是公共的,静态的,最终的常量.
+    相当于全局常量，可以直接省略修饰符。实现类可以直接访问接口中的变量
+    
+69. 对于子类的构造函数说明，下列叙述中错误的是  
+A、子类不能继承父类的无参构造函数。  
+B、子类可以在自己的构造函数中使用super关键字来调用父类的含参数构造函数，但这个调用语句必须是子类构造函数的第一个可执行语句。  
+C、在创建子类的对象时，若不含带参构造函数，将先执行父类的无参构造函数，然后再执行自己的无参构造函数。  
+D、子类不但可以继承父类的无参构造函数，也可以继承父类的有参构造函数。  
+答案选D  
+解析：构造函数不能被继承，构造方法只能被显式或隐式的调用。
+
+70. 有一个源代码，只包含import java.util.* ; 这一个import语句，下面叙述正确的是  
+A、只能写在源代码的第一句  
+B、可以访问java/util目录下及其子目录下的所有类  
+C、能访问java/util目录下的所有类，不能访问java/util子目录下的所有类  
+D、编译错误  
+答案选C  
+解析：导入java.util.*不能读取其子目录的类，因为如果java.util里面有个a类，java.util.regex里面也有个a类，
+我们若是要调用a类的方法或属性时，应该使用哪个a类呢。所以应该选C
+
+71. 下列哪个选项是正确计算42度（角度）的余弦值  
+A、double d=Math.cos（42）  
+B、double d=Math.cosine（42）  
+C、double d=Math.cos（Math.toRadians（42））  
+D、double d=Math.cos（Math.toDegrees（42））  
+答案选C  
+解析：计算余弦值使用Math类的cos()方法，toRadians()是将角度转换为弧度，
+toDegrees()是将弧度转换为角度
+
+72. 下面哪种情况会导致持久区jvm堆内存溢出  
+A、循环上万次的字符串处理  
+B、在一段代码内申请上百M甚至上G的内存  
+C、使用CGLib技术直接操作字节码运行，生成大量的动态类  
+D、不断创建对象  
+答案选C  
+解析：
+https://www.nowcoder.com/questionTerminal/1999635c228d49be84eb7623108be35e
+
+73. 哪些不是 Java 的数据类型(复选题)  
+A、int 　　　　　B、String  
+C、*point　 　　D、union  
+答案选CD  
+解析：题目是说数据类型，并没有说基本数据类型，
+所有包括了引用数据类型，String为字符串类，属于引用数据类型
+
+74. 下面哪些接口直接继承自Collection接口(复选题)  
+A、List 　　　　　B、Map  
+C、Set　　　　　D、Iterator  
+答案选AC  
+解析：Collection是继承Iterator接口  
+![Z99ZsP.png](https://s2.ax1x.com/2019/06/22/Z99ZsP.png)
 
 
 ## 判断题
