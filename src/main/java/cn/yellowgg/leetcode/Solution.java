@@ -1,6 +1,7 @@
 package cn.yellowgg.leetcode;
 
 import java.util.ArrayList;
+import java.util.Stack;
 
 /**
  * @Author:黄广
@@ -299,11 +300,11 @@ public class Solution {
         char[] chars = S.toCharArray();
         char s;
         int i = 0;
-        int j = chars.length-1;
-        while(i < j) {
-            if(!(Character.isLowerCase(chars[i]) || Character.isUpperCase(chars[i]))){
+        int j = chars.length - 1;
+        while (i < j) {
+            if (!(Character.isLowerCase(chars[i]) || Character.isUpperCase(chars[i]))) {
                 i++;
-            } else if (!(Character.isLowerCase(chars[j]) || Character.isUpperCase(chars[j]))){
+            } else if (!(Character.isLowerCase(chars[j]) || Character.isUpperCase(chars[j]))) {
                 j--;
             } else {
                 s = chars[i];
@@ -312,6 +313,29 @@ public class Solution {
             }
         }
         return new String(chars);
+    }
+
+    /**
+     * https://leetcode.com/problems/valid-parentheses/
+     */
+    public boolean isValid(String s) {
+        if (s == null || s.length() == 0) return true;
+        Stack<Character> stack = new Stack<>();
+        for (char c : s.toCharArray()) {
+            if (c == '(' || c == '{' || c == '[') {
+                stack.push(c);
+            } else if (c == ')') {
+                if (!stack.isEmpty() && stack.pop() == '(') continue;
+                return false;
+            } else if (c == ']') {
+                if (!stack.isEmpty() && stack.pop() == '[') continue;
+                return false;
+            } else if (c == '}') {
+                if (!stack.isEmpty() && stack.pop() == '{') continue;
+                return false;
+            }
+        }
+        return stack.isEmpty();
     }
 
     public static void main(String[] args) {
