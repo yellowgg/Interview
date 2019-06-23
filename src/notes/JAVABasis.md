@@ -429,7 +429,8 @@ https://www.nowcoder.com/questionTerminal/5161fdd4dd4f4ad699f37e3b0b7d0ba1
     A、true,true　　　 　B、true,false  
     C、false,true　　　　D、false,false  
     答案选C  
-    解析：euqals和==都比较的是对象的地址。只有String的equals重写了，比较内容
+    解析：euqals和==都比较的是对象的地址。但是基本类型和包装类型可以比较值，参考75题  
+    只有String的equals重写了，比较内容
 
 52. java 接口的修饰符可以为  
 A、private　　 B、protected  
@@ -759,7 +760,56 @@ C、Set　　　　　D、Iterator
 解析：Collection是继承Iterator接口  
 ![Z99ZsP.png](https://s2.ax1x.com/2019/06/22/Z99ZsP.png)
 
+75. 在jdk1.5之后，下列 java 程序输出结果为  
+    ```
+    int i=0;
+    Integer j = new Integer(0);
+    System.out.println(i==j);
+    System.out.println(j.equals(i));
+    ```
+    A、true,true　　　 　B、true,false  
+    C、false,true　　　　D、false,false  
+    答案选A  
+    解析：自动拆装箱JDK需在1.5上，  
+    i==j ，这个是基本类型与 Integer 的比较， j 会自动拆箱成 int 类型，然后比较的是值。因此返回真。  
+    j.equals(i) ，调用 equals 方法后，这个 i 会自动装箱成 Integer 类型，然后再比较值，所以也返回真。
+    
+76. given the following code,what will be the output
+    ```
+    class Value{
+        public int i=15;
+    }
+    public class Test{
+        public static void main(String argv[]){
+            Test t=new Test( );
+            t.first( );
+        }
+     
+    public void first( ){
+        int i=5;
+        Value v=new Value( );
+        v.i=25;
+        second(v,i);
+        System.out.println(v.i);
+    }
+     
+    public void second(Value v,int i){
+        i = 0;
+        v.i = 20;
+        Value val = new Value( );
+        v = val;
+        System.out.println(v.i+" "+i);
+       }
+    }
 
+    ```
+    A、15 0 20　　　　B、15 0 15  
+    C、20 0 20　　　　D、0 15 20  
+    答案选A  
+    解析：给我绕蒙了。亏我一直对c语言的指针学得很好，到了java这边就麻木不再考虑地址的问题了。
+    认真考虑值传递和地址传递就能做出来了。second的v.i=20修改的是first里的v，然后后面的v=val
+    这里之后，就跟first.v没什么关系了，所以first.v的值最终是20
+       
 ## 判断题
 1. abstract和final可以同时作为一个类的修饰符  
 答案：错误  

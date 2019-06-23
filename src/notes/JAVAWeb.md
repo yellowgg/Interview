@@ -41,3 +41,11 @@ D、运用javax.servlet.ResponseDispatcher接口的forward方法
 答案选B  
 解析：
 https://www.nowcoder.com/questionTerminal/beccf26c0c8f439c97b050945fa6ee6b
+
+6. 在Web应用程序的文件与目录结构中，web.xml是放置在()中  
+A、WEB-INF目录  
+B、conf目录   
+C、lib目录  
+D、classes目录  
+答案选A  
+
