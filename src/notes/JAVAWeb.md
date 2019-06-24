@@ -49,3 +49,16 @@ C、lib目录
 D、classes目录  
 答案选A  
 
+7. JSP 表达式的写法  
+A、<% expression %>　　　B、<=% expression %>   
+C、<%= expression %>　　 D、\<expression/>  
+答案选C  
+解析：
+(1)<%...%>：可以插入一些语句。  
+(2)<%! ...  %>：只能放置全局变量、全局常量、类、函数。  
+(3)<%= ... %>：只能放置一个变量、常量。
+
+8. 在Web应用程序中，(    )负责将HTTP请求转换为HttpServletRequest对象  
+A、Servlet对象　　　B、HTTP服务器   
+C、Web容器　　　　 D、JSP网页  
+答案选C

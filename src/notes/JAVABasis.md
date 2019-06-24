@@ -809,7 +809,58 @@ C、Set　　　　　D、Iterator
     解析：给我绕蒙了。亏我一直对c语言的指针学得很好，到了java这边就麻木不再考虑地址的问题了。
     认真考虑值传递和地址传递就能做出来了。second的v.i=20修改的是first里的v，然后后面的v=val
     这里之后，就跟first.v没什么关系了，所以first.v的值最终是20
-       
+    
+77. 输入流将数据从文件，标准输入或其他外部输入设备中加载道内存，
+在 java 中其对应于抽象类（）及其子类  
+A、java.io.InputStream  
+B、java.io.OutputStream  
+C、java.os.InputStream  
+D、java.os.OutputStream  
+答案选A  
+
+78. 下面有关java final的基本规则，描述错误的是  
+A、final修饰的类不能被继承  
+B、final修饰的成员变量只允许赋值一次，且只能在类方法赋值  
+C、final修饰的局部变量即为常量，只能赋值一次。  
+D、final修饰的方法不允许被子类覆盖  
+答案选B  
+解析：final修饰的成员变量为基本数据类型是，在赋值之后无法改变。当final
+修饰的成员变量为引用数据类型时，在赋值后其指向地址无法改变，但是对象内容还是可以改变的。  
+final修饰的成员变量在赋值时可以有三种方式。
+1、在声明时直接赋值。2、在构造器中赋值。3、在初始代码块中进行赋值。
+
+79. list是一个ArrayList的对象，哪个选项的代码填到//todo 
+delete处，可以在Iterator遍历的过程中正确并安全的删除一个list中保存的对象？  
+    ```
+    Iterator it = list.iterator();
+    int index = 0;
+    while (it.hasNext())
+    {
+        Object obj = it.next();
+        if (needDelete(obj))  //needDelete返回boolean，决定是否要删除
+        {
+            //todo delete
+        }
+        index ++;
+    }
+    ```
+    A、it.remove();  
+    B、list.remove(obj);  
+    C、list.remove(index);  
+    D、list.remove(obj,index);  
+    答案选A  
+    解析：
+    https://www.nowcoder.com/questionTerminal/b41c88359c8a4d69a35c2f37400e49f0
+    
+80. 在JAVA中，下列哪些是Object类的方法(复选题)  
+A、synchronized()  
+B、wait()  
+C、notify()  
+D、notifyAll()  
+E、sleep()  
+答案选BCD  
+解析：synchronized是java关键字，sleep是Thread类的方法
+   
 ## 判断题
 1. abstract和final可以同时作为一个类的修饰符  
 答案：错误  
