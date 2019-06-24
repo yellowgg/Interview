@@ -338,6 +338,25 @@ public class Solution {
         return stack.isEmpty();
     }
 
+    /**
+     * https://leetcode.com/problems/detect-capital/
+     */
+    public boolean detectCapitalUse(String word) {
+        int capsNumber = 0;
+        for (int i = 0; i < word.length(); i++) {
+            if (word.charAt(i) < 97) {
+                capsNumber++;
+            }
+        }
+        if (capsNumber == 0) {
+            return true;
+        } else if (capsNumber == word.length()) {
+            return true;
+        } else {
+            return word.charAt(0) < 97 && capsNumber == 1 ? true : false;
+        }
+    }
+
     public static void main(String[] args) {
         Solution solution = new Solution();
         String s = solution.reverseWords("Let's take LeetCode contest");
