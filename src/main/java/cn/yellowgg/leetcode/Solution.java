@@ -361,18 +361,41 @@ public class Solution {
      * https://leetcode.com/problems/range-sum-of-bst/submissions/
      */
     public int rangeSumBST(TreeNode root, int L, int R) {
-        if(root==null) {
+        if (root == null) {
             return 0;
         }
-        if(root.val < L) {
+        if (root.val < L) {
             return rangeSumBST(root.right, L, R);
         }
-        if(root.val > R) {
+        if (root.val > R) {
             return rangeSumBST(root.left, L, R);
         }
         return root.val + rangeSumBST(root.left, L, R) + rangeSumBST(root.right, L, R);
     }
-    
+
+    /**
+     * https://leetcode.com/problems/squares-of-a-sorted-array/
+     */
+    public int[] sortedSquares(int[] A) {
+        int left = 0;
+        int right = A.length - 1;
+        int[] result = new int[A.length];
+        int index = A.length - 1;
+
+        while (left <= right) {
+            int i1 = A[left] * A[left];
+            int i2 = A[right] * A[right];
+            if (i1 < i2) {
+                result[index--] = i2;
+                right--;
+            } else {
+                result[index--] = i1;
+                left++;
+            }
+        }
+        return result;
+    }
+
     public static void main(String[] args) {
         Solution solution = new Solution();
         String s = solution.reverseWords("Let's take LeetCode contest");
