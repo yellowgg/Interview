@@ -861,6 +861,69 @@ E、sleep()
 答案选BCD  
 解析：synchronized是java关键字，sleep是Thread类的方法
    
+81. A 派生出子类 B ， B 派生出子类 C ，并且在 Java 源代码中有如下声明  
+    ```
+    A  a0=new  A();
+    
+    A  a1 =new  B();
+    
+    A  a2=new  C();
+    
+    哪个说法是正确的
+    ```
+    A、只有第1行能通过编译  
+    B、第1、2行能通过编译，但第3行编译出错  
+    C、第1、2、3行能通过编译，但第2、3行运行时出错  
+    D、第1行、第2行和第3行的声明都是正确的  
+    答案选C
+
+82. 定义有StringBuffer s1=new StringBuffer(10);s1.append(“1234”)
+则s1.length()和s1.capacity()分别是多少  
+A、4   10 　　 　　B、4   4  
+C、10  10　 　  　D、10  4  
+答案选A  
+解析：length 返回当前长度，如果字符串长度没有初始化长度大，capacity返回初始化的长度。  
+如果append后的字符串长度在初始化长度和初始化长度的两倍+2之间，capacity返回初始化长度的两倍+2
+如果append后的字符串长度超过初始化长度的两倍+2后，capacity返回增长后的长度
+
+83. 以下方法，哪个不是对add方法的重载  
+    ```
+    public class Test
+    {
+        public void add( int x,int y,int z){}
+    }
+    ```
+    A、public int add(int x,int y,float z){return 0;}  
+    B、public int add(int x,int y,int z){return 0;}  
+    C、public void add(int x,int y){}  
+    D、以上都不是  
+    答案选B  
+    解析：方法重载是指在一个类中定义多个同名的方法，
+    但要求每个方法具有不同的参数的类型或参数的个数。
+
+84. 假定AB为一个类，则执行 “AB ab = new AB(a,5);”语句时将自动调用该类的  
+A、带参构造函数　　　　B、无参构造函数  
+C、拷贝构造函数　　　　D、重载赋值运算  
+答案选A
+
+85. 如果一个接口Glass有个方法setColor()，
+有个类BlueGlass实现接口Glass，则在类BlueGlass中正确的是  
+A、protected void setColor() { …}  
+B、void setColor() { …}  
+C、public void setColor() { …}  
+D、以上语句都可以用在类BlueGlass中  
+答案选C  
+解析：子类的权限不能比父类更低  
+
+86. JVM内存不包含如下哪个部分  
+A、Stacks　　　　B、PC寄存器  
+C、Heap　　　　　D、Heap Frame
+答案选D  
+解析：
+https://www.nowcoder.com/questionTerminal/34a92a7e42a84f048491e9339631891a
+
+
+
 ## 判断题
 1. abstract和final可以同时作为一个类的修饰符  
 答案：错误  
