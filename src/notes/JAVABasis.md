@@ -922,7 +922,33 @@ C、Heap　　　　　D、Heap Frame
 解析：
 https://www.nowcoder.com/questionTerminal/34a92a7e42a84f048491e9339631891a
 
-
+87. 有以下一个对象
+    ```
+    public class DataObject implements Serializable{
+    private static int i=0;
+    private String word=" ";
+    public void setWord(String word){
+        this.word=word;
+    }
+    public void setI(int i){
+        Data0bject. i=I;
+     }
+    }
+    ```
+    创建一个如下方式的DataObject
+    ```
+    DataObject object=new Data0bject ( );
+    object. setWord("123");
+    object. setI(2);
+    ```
+    将此对象序列化为文件，并在另外一个JVM中读取文件，进行反序列化，
+    请问此时读出的Data0bject对象中的word和i的值分别为  
+    A、"", 0　　　　 B、"", 2  
+    C、"123", 2　　　　　D、"123", 0  
+    答案选D  
+    解析：序列化保存的是对象的状态，静态变量属于类的状态，
+    因此，序列化并不保存静态变量。所以i是没有改变的
+    
 
 ## 判断题
 1. abstract和final可以同时作为一个类的修饰符  
