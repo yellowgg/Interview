@@ -917,7 +917,7 @@ D、以上语句都可以用在类BlueGlass中
 
 86. JVM内存不包含如下哪个部分  
 A、Stacks　　　　B、PC寄存器  
-C、Heap　　　　　D、Heap Frame
+C、Heap　　　　　D、Heap Frame  
 答案选D  
 解析：
 https://www.nowcoder.com/questionTerminal/34a92a7e42a84f048491e9339631891a
