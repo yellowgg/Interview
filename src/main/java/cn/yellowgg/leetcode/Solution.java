@@ -396,6 +396,41 @@ public class Solution {
         return result;
     }
 
+    /**
+     * https://leetcode.com/problems/remove-outermost-parentheses/
+     */
+    public String removeOuterParentheses(String S) {
+        StringBuilder sb = new StringBuilder();
+        //使用下标的变化模拟栈
+        int left = 0;
+        int right = 0;
+        //遍历
+        for (char c : S.toCharArray()) {
+            switch (c) {
+                case '(':
+                    //如果是左括号，左下标增加，代表入栈
+                    left++;
+                    //如果不是初次入栈，就代表不是最外围的括号，需要打印
+                    if (left != 1) {
+                        sb.append(c);
+                    }
+                    break;
+                case ')':
+                    //如果是右括号，右下标增加，代表入栈
+                    right++;
+                    //右括号入栈之后需要匹配左括号
+                    if (right != left) {
+                        //如果右括号不等于左括号，说明是内部的，需要打印，如(()，然后就可以消掉
+                        sb.append(c);
+                    } else {
+                        left = 0;
+                        right = 0;
+                    }
+            }
+        }
+        return sb.toString();
+    }
+
     public static void main(String[] args) {
         Solution solution = new Solution();
         String s = solution.reverseWords("Let's take LeetCode contest");
