@@ -1,7 +1,6 @@
 package cn.yellowgg.leetcode;
 
-import java.util.ArrayList;
-import java.util.Stack;
+import java.util.*;
 
 /**
  * @Author:黄广
@@ -19,6 +18,18 @@ public class Solution {
         TreeNode right;
 
         TreeNode(int x) {
+            val = x;
+        }
+    }
+
+    /**
+     * 链表节点
+     */
+    public class ListNode {
+        int val;
+        ListNode next;
+
+        ListNode(int x) {
             val = x;
         }
     }
@@ -431,9 +442,177 @@ public class Solution {
         return sb.toString();
     }
 
+    /**
+     * 728 https://leetcode.com/problems/self-dividing-numbers/
+     */
+    /**
+     * 本题思路：
+     * 检查所有的数，如果该数包含了0，直接不要，如果该数不能整除该数的某一位，也不要
+     */
+    public List<Integer> selfDividingNumbers(int left, int right) {
+        List<Integer> list = new ArrayList<Integer>();
+        for (int i = left; i <= right; i++) {
+            if (check(i)) {
+                list.add(i);
+            }
+        }
+
+        return list;
+    }
+
+    private boolean check(int i) {
+        int temp = i;
+        int num;
+        //遍历数字的每一位
+        while (temp != 0) {
+            num = temp % 10;
+            if (num == 0) {
+                return false;
+            } else if (i % num != 0) {
+                return false;
+            }
+            temp /= 10;
+        }
+        return true;
+    }
+
+    /**
+     * 942 https://leetcode.com/problems/di-string-match/
+     */
+    /**
+     * 本题思路：
+     * 既然I的时候是右边都比a[i]大，那么就把最小的放在a[i]
+     * 既然D的时候是右边都比a[i]小，那么就把最大的放在a[i]
+     * 然后同理，0 1 2 3 4 在第一轮的时候只剩1 2 3
+     * 继续上面的对比，就会用掉1和3
+     * 因为只循环4次，剩下的2直接放到数组最后面
+     */
+    public int[] diStringMatch(String S) {
+        int[] array = new int[S.length() + 1];
+        int index = 0;
+        int low = 0;
+        int high = S.length();
+        for (char c : S.toCharArray()) {
+            if (c == 'I') {
+                array[index++] = low++;
+            } else {
+                array[index++] = high--;
+            }
+        }
+        array[index] = low;
+        return array;
+    }
+
+    /**
+     * 21 https://leetcode.com/problems/merge-two-sorted-lists/
+     */
+    /**
+     * 本题思路：
+     * 用递归，每次比较两个节点的大小，小的节点node 就使用，相当于作为链表的头，
+     * 然后让node的下一个跟原来的比，如此反复
+     * 比如 1 2 3 ， 4 5 6
+     * 1跟4比，取1 下一轮就是1的后面2跟4比
+     * 2跟4比，取2 下一轮就是2的后面3跟4比
+     * 3跟4比，取3 下一轮就没了，3直接连上4
+     * 就是123456了
+     */
+    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+        if (l1 == null) {
+            return l2;
+        }
+        if (l2 == null) {
+            return l1;
+        }
+        if (l1.val < l2.val) {
+            l1.next = mergeTwoLists(l1.next, l2);
+            return l1;
+        } else {
+            l2.next = mergeTwoLists(l2.next, l1);
+            return l2;
+        }
+    }
+
+    /**
+     * 67 https://leetcode.com/problems/add-binary/
+     */
+    /**
+     * 本题思路：
+     * 大数加法了解一下，虽然用大数加法在这里算小题大做了，就当复习一遍吧
+     * 也可以根据字符串算出十进制的数，然后加了之后再转回二进制
+     */
+    public String addBinary(String a, String b) {
+        //如果全是0，最后的result数组也全都是0，就出现因为flag的存在而返回“”，但其实应该返回“0”
+        if ("0".equals(a) && "0".equals(b)) {
+            return "0";
+        }
+        //获取最大长度
+        int maxLen = a.length() > b.length() ? a.length() : b.length();
+
+        //构建两个倒序数组
+        int[] arrayA = new int[maxLen + 1];
+        for (int i = 0; i < a.length(); i++) {
+            arrayA[i] = a.charAt(a.length() - 1 - i) - '0';
+        }
+
+        int[] arrayB = new int[maxLen + 1];
+        for (int i = 0; i < b.length(); i++) {
+            arrayB[i] = b.charAt(b.length() - 1 - i) - '0';
+        }
+
+        //构建结果数组
+        int[] result = new int[maxLen + 1];
+
+        //开始计算
+        for (int i = 0; i < result.length; i++) {
+            int temp = result[i];
+            temp += arrayA[i];
+            temp += arrayB[i];
+            //判断进位
+            if (temp >= 2) {
+                temp -= 2;
+                result[i + 1] = 1;
+            }
+            result[i] = temp;
+        }
+
+        //逆序返回
+        StringBuilder sb = new StringBuilder();
+        //最高位的标记
+        boolean flag = false;
+        for (int i = result.length - 1; i >= 0; i--) {
+            if (!flag) {
+                if (result[i] == 0) {
+                    continue;
+                }
+                flag = true;
+            }
+            sb.append(result[i]);
+        }
+        return sb.toString();
+    }
+
+    /**
+     * 26 https://leetcode.com/problems/remove-duplicates-from-sorted-array/
+     */
+    /**
+     * 本题思路：
+     * 遍历数组，如果发现两个数不同，就把后一个数放在前一个数的后边，两个数重复的话往后移
+     * 如此往复后整个数组的前面就是去了重的排序数列
+     */
+    public int removeDuplicates(int[] nums) {
+        int index = 0;
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[index] != nums[i]) {
+                nums[++index] = nums[i];
+            }
+        }
+        return index + 1;
+    }
+
     public static void main(String[] args) {
         Solution solution = new Solution();
-        String s = solution.reverseWords("Let's take LeetCode contest");
-        System.out.println(s);
+        int[] nums = new int[]{0, 0, 1, 2, 2, 2, 3, 3, 4, 4, 5};
+        int i = solution.removeDuplicates(nums);
+        System.out.println(i);
     }
 }
