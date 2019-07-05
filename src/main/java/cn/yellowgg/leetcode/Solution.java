@@ -609,10 +609,151 @@ public class Solution {
         return index + 1;
     }
 
+    /**
+     * 27 https://leetcode.com/problems/remove-element/
+     */
+    /**
+     * 本题思路：
+     * 扫描数组，如果不是要移除的数，就往后继续找，用一个index代表从前往后
+     */
+    public int removeElement(int[] nums, int val) {
+        int index = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] != val) {
+                nums[index++] = nums[i];
+            }
+        }
+        return index;
+    }
+
+    /**
+     * 28 https://leetcode.com/problems/implement-strstr/
+     */
+    /**
+     * 本题思路：
+     * 匹配字符串，借助subString
+     */
+    public int strStr(String haystack, String needle) {
+        if (haystack == null || needle == null
+                || haystack.length() < needle.length()) {
+            return -1;
+        }
+        //匹配
+        for (int i = 0; i <= haystack.length() - needle.length(); i++) {
+            if (haystack.substring(i, i + needle.length()).equals(needle)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * 66 https://leetcode.com/problems/plus-one/
+     */
+    /**
+     * 本题思路：
+     * 先算最后一位，判断有没有超过10 然后再算剩下的即可，模拟竖式运算
+     */
+    public int[] plusOne(int[] digits) {
+        int len = digits.length;
+        boolean flag = false;//进位标记
+        int[] num = digits;
+        //算最后一位
+        if (digits[len - 1] + 1 >= 10) {
+            //最后一位置为0
+            num[len - 1] = 0;
+            flag = true;
+        } else {
+            num[len - 1] += 1;
+            //如果没有进位，直接返回最后一位+1的结果即可
+            return num;
+        }
+
+        //如果最后一位有进位 就算出全部
+        for (int i = len - 2; i >= 0; i--) {
+            //如果有进位
+            if (flag && num[i] + 1 >= 10) {
+                //跟上面的一样
+                num[i] = 0;
+                flag = true;
+            } else if (flag) {
+                num[i] += 1;
+                flag = false;
+            }
+        }
+
+        //算最高位 因为最高位也是0的话，代表前面也是0，因为9999+1 = 10000
+        if (flag && num[0] == 0) {
+            //扩展多一位 此时数组全都为0 把第一位改成1即可
+            int[] result = new int[len + 1];
+            result[0] = 1;
+            return result;
+        }
+        return num;
+    }
+
+    /**
+     * 69 https://leetcode.com/problems/sqrtx/
+     */
+    /**
+     * 本题思路：
+     * 这里试试牛顿迭代法
+     */
+    public int mySqrt(int x) {
+        long result = x;
+        while (result * result > x) {
+            result = (result + x / result) / 2;
+        }
+        return (int) result;
+    }
+
+    /**
+     * 38 https://leetcode.com/problems/count-and-say/
+     */
+    /**
+     * 本题思路：
+     * 看了大半天才理解题意，就是说一下上一个数字的形式 那就直接按着正常逻辑来
+     */
+    public String countAndSay(int n) {
+        if (n == 1) {
+            return "1";
+        }
+        //初始字符串
+        StringBuilder str = new StringBuilder("1");
+        StringBuilder temp;
+        int len; //这个值是统计几个几中的第一个几
+        char ch; //用于记录上一个字符串的字符
+        //按次数遍历
+        for (int i = 1; i < n; i++) {
+            temp = str;
+            str = new StringBuilder();//新的字符串
+            //初始化为1个几
+            len = 1;
+            //从第一个字符开始
+            ch = temp.charAt(0);
+            //开始扫描字符串
+            for (int j = 1, length = temp.length(); j < length; j++) {
+                //统计同一个字符有多少次
+                if (temp.charAt(j) != ch) {
+                    str.append(len).append(ch);//这样就是添加了几个几的意思
+                    //初始化len
+                    len = 1;
+                    //获取下一个不同的字符
+                    ch = temp.charAt(j);
+                } else {
+                    //统计几个几的第一个几
+                    len++;
+                }
+            }
+            //统计完之后添加
+            str.append(len).append(ch);
+        }
+        return str.toString();
+    }
+
     public static void main(String[] args) {
         Solution solution = new Solution();
-        int[] nums = new int[]{0, 0, 1, 2, 2, 2, 3, 3, 4, 4, 5};
-        int i = solution.removeDuplicates(nums);
-        System.out.println(i);
+        String s = solution.countAndSay(7);
+        System.out.println(s);
     }
 }
