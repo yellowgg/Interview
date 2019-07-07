@@ -751,9 +751,165 @@ public class Solution {
         return str.toString();
     }
 
+    /**
+     * 2 https://leetcode.com/problems/add-two-numbers/
+     */
+    /**
+     * 本题思路：
+     * 用正常思路
+     */
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        ListNode result = new ListNode(0);
+        ListNode fir = l1, sec = l2;
+        //最终返回result 所以用一个指针操作result
+        ListNode p = result;
+        int carry = 0;
+        //扫描两条链表
+        while (fir != null || sec != null) {
+            //获取值 如果节点为null就用0
+            int x = (fir != null) ? fir.val : 0;
+            int y = (sec != null) ? sec.val : 0;
+            //计算
+            int sum = x + y + carry;
+            //进位值
+            carry = sum / 10;
+            //指向
+            p.next = new ListNode(sum % 10);
+            p = p.next;
+            if (fir != null) {
+                fir = fir.next;
+            }
+            if (sec != null) {
+                sec = sec.next;
+            }
+        }
+        //计算最后一位
+        if (carry > 0) {
+            p.next = new ListNode(carry);
+        }
+
+        return result.next;
+    }
+
+    /**
+     * 22 https://leetcode.com/problems/generate-parentheses/
+     */
+    /**
+     * 本题思路：
+     * 用递归，可以用左右来标记，因为第一个就是左n个左括号，右n个右括号
+     */
+    public List<String> generateParenthesis(int n) {
+        List<String> result = new ArrayList();
+        if (n == 0) {
+            return result;
+        }
+        auxiliary(result, "", n, n);
+        return result;
+    }
+
+    private void auxiliary(List<String> result, String paren, int left, int right) {
+        if (left > 0) {
+            auxiliary(result, paren + "(", left - 1, right);
+        }
+        if (right > left) {
+            auxiliary(result, paren + ")", left, right - 1);
+        }
+        if (right == 0) {
+            result.add(paren);
+        }
+    }
+
+    /**
+     * 148 https://leetcode.com/problems/sort-list/
+     */
+    /**
+     * 本题思路：
+     * 满足题干时间复杂度的只有快速排序，归并排序，堆排序，鉴于链表没有下标，所以选择归并排序
+     */
+    public ListNode sortList(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        //慢指针每走一步，快指针走两步，快指针指到链表尾的时候，慢指针指在中间，分开了
+        ListNode slow = head, fast = head, pre = head;
+        while (fast != null && fast.next != null) {
+            pre = slow;
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        pre.next = null;
+        return merge(sortList(head), sortList(slow));
+    }
+
+    private ListNode merge(ListNode l1, ListNode l2) {
+        if (l1 == null) return l2;
+        if (l2 == null) return l1;
+        if (l1.val < l2.val) {
+            l1.next = merge(l1.next, l2);
+            return l1;
+        } else {
+            l2.next = merge(l1, l2.next);
+            return l2;
+        }
+    }
+
+
+    /**
+     * 46 https://leetcode.com/problems/permutations/
+     */
+    /**
+     * 本题思路：
+     * 回溯
+     */
+    public List<List<Integer>> permute(int[] nums) {
+        List<List<Integer>> result = new ArrayList();
+        result.add(new ArrayList<>());
+        return backtracking(result, nums, 0);
+    }
+
+    private List<List<Integer>> backtracking(List<List<Integer>> result, int[] nums, int pos) {
+        if (pos == nums.length) {
+            return result;
+        }
+        List<List<Integer>> newResult = new ArrayList<>();
+        for (List<Integer> list : result) {
+            for (int i = 0; i <= list.size(); i++) {
+                List<Integer> newList = new ArrayList(list);
+                newList.add(i, nums[pos]);
+                newResult.add(newList);
+            }
+        }
+        result = newResult;
+        return backtracking(result, nums, pos + 1);
+    }
+
+    /**
+     * 24 https://leetcode.com/problems/swap-nodes-in-pairs/
+     */
+    /**
+     * 本题思路：
+     * 先获取第二第三个节点，然后第二个指向第一个，第一个指向第三个，第三个又重复，递归
+     */
+    public ListNode swapPairs(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        //获取第二个
+        ListNode sec = head.next;
+        //获取第三个
+        ListNode thr = sec.next;
+        //第二指向第一，以便交换
+        sec.next = head;
+        //第一指向下一组的头结点
+        head.next = swapPairs(thr);
+
+        //返回头结点
+        return sec;
+    }
+
     public static void main(String[] args) {
         Solution solution = new Solution();
-        String s = solution.countAndSay(7);
-        System.out.println(s);
+        int[] ints = new int[]{1, 2, 3};
+        List<List<Integer>> permute = solution.permute(ints);
     }
 }
