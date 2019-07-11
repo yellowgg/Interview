@@ -1,10 +1,12 @@
 package cn.yellowgg.leetcode;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Stack;
 
 /**
+ * @Description: 刷lettcode
  * @Author:黄广
- * @Description: 刷会lettcode的题
  * @Date: Created in 19-6-8 下午7:40
  */
 public class Solution {
@@ -842,8 +844,12 @@ public class Solution {
     }
 
     private ListNode merge(ListNode l1, ListNode l2) {
-        if (l1 == null) return l2;
-        if (l2 == null) return l1;
+        if (l1 == null) {
+            return l2;
+        }
+        if (l2 == null) {
+            return l1;
+        }
         if (l1.val < l2.val) {
             l1.next = merge(l1.next, l2);
             return l1;
@@ -907,9 +913,154 @@ public class Solution {
         return sec;
     }
 
+    /**
+     * 43 https://leetcode.com/problems/multiply-strings/
+     */
+    /**
+     * 本题思路：
+     * 字符串相乘，不就是传说中的大数乘法吗
+     */
+    public String multiply(String num1, String num2) {
+        if (isZero(num1) || isZero(num2)) {
+            return "0";
+        }
+
+        // 存储num1和num2和结果 结果最长就是两个的长度之和 999*999=998001
+        int[] a1 = new int[num1.length()];
+        int[] a2 = new int[num2.length()];
+        int[] product = new int[num1.length() + num2.length()];
+
+        // 倒序计算
+        for (int i = a1.length - 1; i >= 0; i--) {
+            for (int j = a2.length - 1; j >= 0; j--) {
+
+                // 不用把字符串转成int数组了，直接获取每一位的值
+                // Character.getNumericValue(char c)返回指定的Unicode字符表示的int值
+                int thisProduct = Character.getNumericValue(num1.charAt(i)) *
+                        Character.getNumericValue(num2.charAt(j));
+
+                product[i + j + 1] += thisProduct % 10;
+                if (product[i + j + 1] >= 10) {
+                    product[i + j + 1] %= 10;
+                    product[i + j]++;
+                }
+                product[i + j] += thisProduct / 10;
+                if (product[i + j] >= 10) {
+                    product[i + j] %= 10;
+                    product[i + j - 1]++;
+                }
+            }
+        }
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < product.length; i++) {
+            if (i == 0 && product[i] == 0) {
+                continue;
+            }
+            stringBuilder.append(product[i]);
+        }
+        return stringBuilder.toString();
+    }
+
+    private boolean isZero(String num) {
+        for (char c : num.toCharArray()) {
+            if (c != '0') {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * 60 https://leetcode.com/problems/permutation-sequence/
+     */
+    /**
+     * 本题思路：
+     * 又是字典序的题
+     */
+    public String getPermutation(int n, int k) {
+        int[] nums = new int[n + 1];
+
+        int permcount = 1;
+        for (int i = 0; i < n; i++) {
+            nums[i] = i + 1; // 初始化数组
+            permcount *= (i + 1);
+        }
+
+        k--;
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < n; i++) {
+            permcount = permcount / (n - i);
+            int idx = k / permcount;
+            sb.append(nums[idx]);
+            for (int j = idx; j < n - i; j++) {
+                nums[j] = nums[j + 1];
+            }
+            k %= permcount;
+        }
+        return sb.toString();
+    }
+
+
+    /**
+     * 64 https://leetcode.com/problems/minimum-path-sum/
+     */
+    /**
+     * 本题思路：
+     * 动态规划
+     */
+    public int minPathSum(int[][] grid) {
+        int[] dp = new int[grid.length];
+        dp[0] = grid[0][0];
+        for (int i = 1; i < grid.length; i++) {
+            dp[i] = grid[i][0] + dp[i - 1];
+        }
+        for (int j = 1; j < grid[0].length; j++) {
+            for (int i = 0; i < grid.length; i++) {
+                dp[i] = (i == 0 ? dp[i] : Math.min(dp[i], dp[i - 1])) + grid[i][j];
+            }
+        }
+        return dp[grid.length - 1];
+    }
+
+    /**
+     * 104 https://leetcode.com/problems/maximum-depth-of-binary-tree/
+     */
+    /**
+     * 本题思路：
+     * 这还不简单
+     */
+    public int maxDepth(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+
+        return Math.max(maxDepth(root.left), maxDepth(root.right)) + 1;
+    }
+
+    /**
+     * 111 https://leetcode.com/problems/minimum-depth-of-binary-tree/
+     */
+    /**
+     * 本题思路：
+     * 这还还不简单
+     */
+    public int minDepth(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+
+        int l = minDepth(root.left);
+        int r = minDepth(root.right);
+        if (l == 0) {
+            return r + 1;
+        }
+        if (r == 0) {
+            return l + 1;
+        }
+        return Math.min(l, r) + 1;
+    }
+
     public static void main(String[] args) {
         Solution solution = new Solution();
-        int[] ints = new int[]{1, 2, 3};
-        List<List<Integer>> permute = solution.permute(ints);
     }
 }
