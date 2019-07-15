@@ -1,8 +1,6 @@
 package cn.yellowgg.leetcode;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 
 /**
  * @Description: 刷lettcode
@@ -1060,7 +1058,178 @@ public class Solution {
         return Math.min(l, r) + 1;
     }
 
-    public static void main(String[] args) {
-        Solution solution = new Solution();
+    /**
+     * 844 https://leetcode.com/problems/backspace-string-compare/
+     */
+    /**
+     * 本题思路：
+     * 用栈，也可以使用StringBuilder，有个deleteCharAt()方法
+     */
+    public boolean backspaceCompare(String S, String T) {
+        char[] s = S.toCharArray();
+        Stack<Character> sStack = new Stack<Character>();
+        for (int i = 0; i < s.length; i++) {
+            if (s[i] != '#') {
+                sStack.push(s[i]);
+            } else {
+                if (sStack.isEmpty()) {
+                    continue;
+                }
+                sStack.pop();
+            }
+        }
+
+        char[] t = T.toCharArray();
+        Stack<Character> tStack = new Stack<>();
+        for (int i = 0; i < t.length; i++) {
+            if (t[i] != '#') {
+                tStack.push(t[i]);
+            } else {
+                if (tStack.isEmpty()) {
+                    continue;
+                }
+                tStack.pop();
+            }
+        }
+
+
+        return sStack.toString().equals(tStack.toString());
+    }
+
+    /**
+     * 1122 https://leetcode.com/problems/relative-sort-array/
+     */
+    /**
+     * 本题思路：
+     * 用arr1跟arr2扫描相同的，再把不相同的单独拿出来排序再合并
+     * 这是一个双周赛的新题目，第一名用了一分多钟就做出来了，简直是天神下凡横扫凡人哈哈哈
+     */
+    public int[] relativeSortArray(int[] arr1, int[] arr2) {
+        ArrayList<Integer> integers = new ArrayList<>();
+        int len = 0;
+        for (int i = 0; i < arr2.length; i++) {
+            for (int j = 0; j < arr1.length; j++) {
+                if (arr1[j] != 1001 && arr1[j] == arr2[i]) {
+                    integers.add(arr1[j]);
+                    len++;
+                    arr1[j] = 1001;
+                }
+            }
+        }
+
+        int[] result = new int[len];
+        for (int i = 0; i < integers.size(); i++) {
+            result[i] = integers.get(i);
+        }
+
+        int[] asc = new int[arr1.length - len];
+        int ascLen = 0;
+
+        for (int i = 0; i < arr1.length; i++) {
+            if (arr1[i] != 1001) {
+                asc[ascLen++] = arr1[i];
+            }
+        }
+
+        Arrays.sort(asc);
+
+
+        return concat(result, asc);
+    }
+
+    private int[] concat(int[] first, int[] sencond) {
+        int[] re = new int[first.length + sencond.length];
+        System.arraycopy(first, 0, re, 0, first.length);
+        System.arraycopy(sencond, 0, re, first.length, sencond.length);
+        return re;
+    }
+
+    /**
+     * 242 https://leetcode.com/problems/valid-anagram/
+     */
+    /**
+     * 本题思路：
+     * 这是排序分类里面的题，它就是想看看字母是不是一样的，这样的话那就好办
+     */
+    public boolean isAnagram(String s, String t) {
+        //获取两个字符串的字符
+        char[] chars = s.toCharArray();
+        char[] chart = t.toCharArray();
+        //排序
+        Arrays.sort(chars);
+        Arrays.sort(chart);
+
+        //比较
+        return new String(chars).equals(new String(chart));
+    }
+
+    /**
+     * 349 https://leetcode.com/problems/intersection-of-two-arrays/
+     */
+    /**
+     * 本题思路：
+     * HashSet
+     */
+    public int[] intersection(int[] nums1, int[] nums2) {
+        HashSet<Integer> set = new HashSet<Integer>();
+        Arrays.sort(nums1);
+        Arrays.sort(nums2);
+        int i = 0;
+        int j = 0;
+        while (i < nums1.length && j < nums2.length) {
+            if (nums1[i] == nums2[j]) {
+                set.add(nums1[i]);
+                i++;
+                j++;
+            } else if (nums1[i] < nums2[j]) {
+                i++;
+            } else {
+                j++;
+            }
+        }
+
+        int[] ints = new int[set.size()];
+
+        int index = 0;
+
+        Iterator<Integer> iterator = set.iterator();
+        while (iterator.hasNext()) {
+            ints[index++] = iterator.next();
+        }
+
+        return ints;
+    }
+
+    /**
+     * 350 https://leetcode.com/problems/intersection-of-two-arrays-ii/
+     */
+    /**
+     * 本题思路：
+     * 跟这个题的题一一样，用两个指针对比一样的部分
+     */
+    public int[] intersect(int[] nums1, int[] nums2) {
+        int[] results = new int[Math.min(nums1.length, nums2.length)];
+        Arrays.sort(nums1);
+        Arrays.sort(nums2);
+
+        int i = 0;
+        int j = 0;
+        int index = 0;
+
+        while (i < nums1.length && j < nums2.length) {
+            if (nums1[i] == nums2[j]) {
+                results[index++] = nums1[i];
+                i++;
+                j++;
+
+            } else if (nums1[i] < nums2[j]) {
+                i++;
+
+            } else {
+                j++;
+            }
+        }
+
+        return Arrays.copyOf(results, index);
     }
 }
