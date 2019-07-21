@@ -1232,4 +1232,158 @@ public class Solution {
 
         return Arrays.copyOf(results, index);
     }
+
+    /**
+     * 75 https://leetcode.com/problems/sort-colors/
+     */
+    /**
+     * 本题思路:
+     * 直觉告诉我用桶排序
+     */
+    public void sortColors(int[] nums) {
+        //桶
+        int[] tong = new int[3];
+        //装桶
+        for (int i = 0; i < nums.length; i++) {
+            tong[nums[i]]++;
+        }
+
+        int index = 0;
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < tong[i]; j++) {
+                nums[index++] = i;
+            }
+        }
+    }
+
+    /**
+     * 155 https://leetcode.com/problems/min-stack/
+     */
+    /**
+     * 本题思路：
+     * 重点是常数阶获取最小值，很明显，用一个数记录着就可以了
+     * 使用辅助栈记录着最小值
+     */
+    class MinStack {
+
+        private Stack<Integer> stack;
+        private Stack<Integer> minStack;
+        private int min;
+
+        public MinStack() {
+            stack = new Stack<Integer>();
+            minStack = new Stack<Integer>();
+            min = Integer.MAX_VALUE;
+        }
+
+        public void push(int x) {
+            stack.push(x);
+            if (x <= minStack.peek() || minStack.empty()) {
+                minStack.push(x);
+            }
+        }
+
+        public void pop() {
+            //如果主栈元素跟最小栈元素相等，最小栈也出栈
+            if (minStack.peek().equals(stack.peek())) {
+                minStack.pop();
+            }
+            stack.pop();
+        }
+
+        public int top() {
+            return stack.peek();
+        }
+
+        public int getMin() {
+            return minStack.peek();
+        }
+    }
+
+    /**
+     *  144 https://leetcode.com/problems/binary-tree-preorder-traversal/
+     */
+    /**
+     * 本题思路：
+     * 用栈
+     */
+    public List<Integer> preorderTraversal(TreeNode root) {
+        List<Integer> result = new ArrayList();
+        Stack<TreeNode> stack = new Stack();
+        while (root != null || !stack.isEmpty()) {
+            while (root != null) {
+                result.add(root.val);
+                stack.push(root);
+                root = root.left;
+            }
+            root = stack.pop();
+            root = root.right;
+        }
+        return result;
+    }
+
+    /**
+     * 94 https://leetcode.com/problems/binary-tree-inorder-traversal/
+     */
+    /**
+     * 本题思路：
+     * 用栈做，不用递归
+     */
+    public List<Integer> inorderTraversal(TreeNode root) {
+        List<Integer> result = new ArrayList();
+        Stack<TreeNode> stack = new Stack();
+        while (root != null || !stack.isEmpty()) {
+            while (root != null) {
+                stack.push(root);
+                root = root.left;
+            }
+            root = stack.pop();
+            result.add(root.val);
+            root = root.right;
+        }
+        return result;
+    }
+
+    /**
+     *  145 https://leetcode.com/problems/binary-tree-postorder-traversal/
+     */
+    /**
+     * 本题思路：
+     * 用栈，换种方式，右孩子比左孩子先出栈，先处理右孩子，然后再倒过来输出
+     */
+    public List<Integer> postorderTraversal(TreeNode root) {
+        List<Integer> result = new ArrayList();
+        if (root == null) {
+            return result;
+        }
+        Stack<TreeNode> stack = new Stack();
+        //先把根节点进栈
+        stack.push(root);
+        while (!stack.isEmpty()) {
+            root = stack.pop();
+            result.add(root.val);
+            if (root.left != null) {
+                stack.push(root.left);
+            }
+            if (root.right != null) {
+                stack.push(root.right);
+            }
+        }
+        Collections.reverse(result);
+        return result;
+    }
+
+    /**
+     * 用来生成树的，无他
+     *
+     * @return
+     */
+    public TreeNode getTreeNode() {
+        TreeNode t1 = new TreeNode(1);
+        TreeNode t2 = new TreeNode(2);
+        TreeNode t3 = new TreeNode(3);
+        t1.right = t2;
+        t2.left = t3;
+        return t1;
+    }
 }
