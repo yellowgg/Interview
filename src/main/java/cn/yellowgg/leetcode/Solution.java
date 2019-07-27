@@ -1301,7 +1301,7 @@ public class Solution {
     }
 
     /**
-     *  144 https://leetcode.com/problems/binary-tree-preorder-traversal/
+     * 144 https://leetcode.com/problems/binary-tree-preorder-traversal/
      */
     /**
      * 本题思路：
@@ -1345,7 +1345,7 @@ public class Solution {
     }
 
     /**
-     *  145 https://leetcode.com/problems/binary-tree-postorder-traversal/
+     * 145 https://leetcode.com/problems/binary-tree-postorder-traversal/
      */
     /**
      * 本题思路：
@@ -1371,6 +1371,132 @@ public class Solution {
         }
         Collections.reverse(result);
         return result;
+    }
+
+    /**
+     * 475 https://leetcode.com/problems/heaters/
+     */
+    public int findRadius(int[] houses, int[] heaters) {
+        Arrays.sort(heaters);
+        int radius = Integer.MIN_VALUE;
+        for (int house : houses) {
+            int index = Arrays.binarySearch(heaters, house);
+            if (index < 0) {
+                index = ~index;
+            }
+            int distance1 = index - 1 >= 0 ? house - heaters[index - 1] :
+                    Integer.MAX_VALUE;
+            int distance2 = index < heaters.length ? heaters[index] - house :
+                    Integer.MAX_VALUE;
+
+            radius = Math.max(radius, Math.min(distance1, distance2));
+        }
+        return radius;
+    }
+
+    /**
+     * 441 https://leetcode.com/problems/arranging-coins/
+     */
+    /**
+     * 本题思路：
+     * 每层叠加，都比上一行多1，计数之后看看是返回count还是count-1
+     */
+    public int arrangeCoins(int n) {
+        if (n < 2) {
+            return n;
+        }
+        int row = 0;
+        int count = 0;
+        long sum = 0;
+        while (sum < n) {
+            row += 1;
+            sum += row;
+            count++;
+        }
+        if (sum == n) {
+            return count;
+        }
+        return count - 1;
+    }
+
+    /**
+     * 101 https://leetcode.com/problems/symmetric-tree/submissions/
+     */
+    public boolean isSymmetric(TreeNode root) {
+        if (root == null) {
+            return true;
+        } else {
+            return isSymmetricTwo(root.left, root.right);
+        }
+    }
+
+    public boolean isSymmetricTwo(TreeNode left, TreeNode right) {
+        if (left == null && right == null) {
+            return true;
+        }
+
+        if (left == null && right != null) {
+            return false;
+        }
+
+        if (left != null && right == null) {
+            return false;
+        }
+
+        if (left.val != right.val) {
+            return false;
+        }
+
+        return isSymmetricTwo(left.left, right.right) && isSymmetricTwo(right.left, left.right);
+    }
+
+    /**
+     * 100 https://leetcode.com/problems/same-tree/
+     */
+    public boolean isSameTree(TreeNode p, TreeNode q) {
+        if (p == null && q != null)
+            return false;
+        if (p != null && q == null)
+            return false;
+        if (p != null && q != null) {
+            if (p.val != q.val)
+                return false;
+            boolean left = isSameTree(p.left, q.left);
+            boolean right = isSameTree(p.right, q.right);
+            if (left == right && right == true)
+                return true;
+            else
+                return false;
+        }
+        return true;
+    }
+
+    /**
+     * 118 https://leetcode.com/problems/pascals-triangle/
+     */
+    /**
+     * 本题思路：
+     * 杨辉三角
+     */
+    public List<List<Integer>> generate(int numRows) {
+        List<List<Integer>> ret = new ArrayList<List<Integer>>();
+        for (int i = 1; i <= numRows; i++) {
+            Integer[] temp = new Integer[i];
+            temp[0] = 1;
+            temp[i - 1] = 1;
+            if (temp.length == 1 || temp.length == 2) {
+                List<Integer> list = Arrays.asList(temp);
+                ret.add(list);
+            } else {
+                for (int j = 1; j < temp.length - 1; j++) {
+                    List<Integer> nums = ret.get(i - 2);
+                    temp[j] = nums.get(j) + nums.get(j - 1);
+                }
+                List<Integer> list = Arrays.asList(temp);
+                ret.add(list);
+            }
+        }
+        return ret;
     }
 
     /**
